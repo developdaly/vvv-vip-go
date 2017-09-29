@@ -10,7 +10,7 @@ SITE_NAME="${VVV_SITE_NAME}"
 # The name (to be) used by MySQL for the DB
 DB_NAME="${VVV_SITE_NAME}"
 # The URL/domain for the site
-SITE_URL="site-name.dev"
+SITE_URL="${DOMAIN}"
 # The multisite stuff for wp-config.php
 EXTRA_CONFIG="
 
