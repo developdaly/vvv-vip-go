@@ -2,7 +2,7 @@ server {
     listen       80;
     listen       443 ssl;
     server_name  {{DOMAINS_HERE}};
-    root            {vvv_path_to_folder}/htdocs;
+    root         {vvv_path_to_folder}/public_html;
 
     error_log    {vvv_path_to_site}/log/error.log;
     access_log   {vvv_path_to_site}/log/access.log;
@@ -14,6 +14,6 @@ server {
     location /_static/ {
         fastcgi_pass php;
         include /etc/nginx/fastcgi_params;
-        fastcgi_param SCRIPT_FILENAME {vvv_path_to_folder}/htdocs/wp-content/mu-plugins/http-concat/ngx-http-concat.php;
+        fastcgi_param SCRIPT_FILENAME {vvv_path_to_folder}/public_html/wp-content/mu-plugins/http-concat/ngx-http-concat.php;
     }
 }
