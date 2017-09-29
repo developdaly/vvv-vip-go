@@ -1,2 +1,1 @@
-path: htdocs
-url: http://"${DOMAIN}"
+path: public_html
