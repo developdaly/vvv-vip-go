@@ -109,11 +109,18 @@ else
   echo "wp-config.php already exists for ${SITE_NAME}"
   # Make sure core and VIP Scanner are up to date
   wp --allow-root core update
-  wp --allow-root plugin update vip-scanner
+
+  if [ wp --allow-root plugin is-installed vip-scanner ]
+    wp --allow-root plugin update vip-scanner
+  else
+    wp --allow-root plugin install vip-scanner
+  fi
+
   (
-    cd public_html/wp-content/mu-plugins
+    cd ${VVV_PATH_TO_SITE}/public_html/wp-content/mu-plugins
     git pull --recurse-submodules
   )
+
   echo -e "${GREEN}Success:${NC} Updated WordPress, VIP Go MU plugins, and VIP Scanner"
 
 fi
