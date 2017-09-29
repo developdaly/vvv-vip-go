@@ -110,7 +110,7 @@ else
   # Make sure core and VIP Scanner are up to date
   wp --allow-root core update
 
-  if [ wp --allow-root plugin is-installed vip-scanner ]
+  if [ wp --allow-root plugin is-installed vip-scanner ]; then
     wp --allow-root plugin update vip-scanner
   else
     wp --allow-root plugin install vip-scanner
