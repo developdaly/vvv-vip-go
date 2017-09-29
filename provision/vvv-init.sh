@@ -55,7 +55,6 @@ for KNOWN_HOST in $(cat "ssh/known_hosts"); do
 done
 
 
-
 # Make a database, if we don't already have one
 echo -e "\nCreating database '${DB_NAME}' (if it's not already there)"
 mysql -u root --password=root -e "CREATE DATABASE IF NOT EXISTS ${DB_NAME}"
@@ -95,7 +94,7 @@ if ! $(noroot wp core is-installed); then
 
   # Add MU plugins in place
   if [ ! -d "${VVV_PATH_TO_SITE}/public_html/wp-content/mu-plugins" ]; then
-    git clone --recursive --quiet https://github.com/Automattic/vip-go-mu-plugins.git htdocs/wp-content/mu-plugins
+    git clone --recursive --quiet https://github.com/Automattic/vip-go-mu-plugins.git public_html/wp-content/mu-plugins
     echo -e "${GREEN}Success:${NC} Cloned the VIP Go MU plugins repository"
   fi
 
@@ -112,7 +111,7 @@ else
   wp --allow-root core update
   wp --allow-root plugin update vip-scanner
   (
-    cd htdocs/wp-content/mu-plugins
+    cd public_html/wp-content/mu-plugins
     git pull --recurse-submodules
   )
   echo -e "${GREEN}Success:${NC} Updated WordPress, VIP Go MU plugins, and VIP Scanner"
