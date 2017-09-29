@@ -92,8 +92,15 @@ if ! $(noroot wp core is-installed); then
 
   noroot wp core ${INSTALL_COMMAND} --url="${DOMAIN}" --quiet --title="${SITE_TITLE}" --admin_name=admin --admin_email="admin@local.test" --admin_password="password"
 
+  # Remove the default wp-content contents because we'll replace the VIP Go repoz
+  rm -rf -- "${VVV_PATH_TO_SITE}/public_html/wp-content"
+
+  # Get the sites
+  git clone --recursive --quiet ${SITE_REPO} ${VVV_PATH_TO_SITE}/public_html/wp-content
+
   # Add MU plugins in place
   if [ ! -d "${VVV_PATH_TO_SITE}/public_html/wp-content/mu-plugins" ]; then
+    cd ${VVV_PATH_TO_SITE}
     git clone --recursive --quiet https://github.com/Automattic/vip-go-mu-plugins.git public_html/wp-content/mu-plugins
     echo -e "${GREEN}Success:${NC} Cloned the VIP Go MU plugins repository"
   fi
